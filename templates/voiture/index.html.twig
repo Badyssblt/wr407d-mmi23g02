@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voiture Index{% endblock %}
+
+{% block body %}
+    <div class="p-12">
+        <h1 class="text-3xl font-bold mb-6">Voitures</h1>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+                <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Id</th>
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Titre</th>
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Description</th>
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Lien Image</th>
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Prix Location</th>
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for voiture in voitures %}
+                    <tr class="border-t border-gray-200">
+                        <td class="px-6 py-4 text-sm text-gray-800">{{ voiture.id }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-800">{{ voiture.titre }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-800">{{ voiture.description }}</td>
+                        <td class="px-6 py-4 text-sm text-gray-800"><img class="w-24 h-24 object-cover" src="{{ voiture.lienImage }}" alt=""></td>
+                        <td class="px-6 py-4 text-sm text-gray-800">{{ voiture.prixLocation }}</td>
+                        <td class="px-6 py-4 text-sm space-x-2">
+                            <a href="{{ path('app_voiture_show', {'id': voiture.id}) }}" class="text-blue-500 hover:text-blue-700">Voir</a>
+                            <a href="{{ path('app_voiture_edit', {'id': voiture.id}) }}" class="text-green-500 hover:text-green-700">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="px-6 py-4 text-sm text-gray-800 text-center">No records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-6">
+            <a href="{{ path('app_voiture_new') }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Créer un nouveau</a>
+        </div>
+    </div>
+
+{% endblock %}

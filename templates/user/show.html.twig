@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <div class="p-12">
+
+        <div class="flex gap-4 items-end">
+            <h1 class="text-3xl font-bold">User</h1>
+            <div>
+                {{ include('user/_delete_form.html.twig') }}
+            </div>
+        </div>
+
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+                <thead>
+                <tr class="bg-gray-100">
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Id</th>
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Email</th>
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Roles</th>
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Password</th>
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Nom</th>
+                    <th class="px-6 py-4 text-left text-sm font-medium text-gray-600">Prenom</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="border-t border-gray-200">
+                    <td class="px-6 py-4 text-sm text-gray-800">{{ user.id }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-800">{{ user.email }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-800">{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-800">{{ user.password }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-800">{{ user.nom }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-800">{{ user.prenom }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-6 flex space-x-4">
+            <a href="{{ path('app_user_index') }}" class="text-blue-500 hover:text-blue-700">Back to list</a>
+            <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="text-green-500 hover:text-green-700">Edit</a>
+        </div>
+
+
+
+    </div>
+{% endblock %}

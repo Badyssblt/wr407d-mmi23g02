@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voiture{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto p-6">
+        <a href="{{ path('app_voiture_catalogue') }}">Retour</a>
+        <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+            <img class="w-full h-80 object-cover rounded-lg mb-6" src="{{ voiture.lienImage }}" alt="{{ voiture.titre }}">
+
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">{{ voiture.titre }}</h1>
+
+            <div>
+                <p class="text-gray-600 mb-6 w-full break-words">{{ voiture.description }}</p>
+            </div>
+
+            <div class="flex items-center justify-between mb-4">
+                <div class="text-xl font-semibold text-blue-600">
+                    {{ voiture.prixLocation }} €
+                    <span class="text-sm text-gray-500">par jour</span>
+                </div>
+
+                <div class="text-lg text-gray-600">
+                    <strong>{{ 'catalogue.city'|trans }}:</strong> {{ voiture.garage ? voiture.garage.lieu.ville : 'Non précisé' }}
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <h2 class="text-2xl font-semibold text-gray-800">Garage</h2>
+                <p class="text-lg text-gray-600">
+                    <strong>Nom du garage:</strong> {{ voiture.garage ? voiture.garage.nom : 'Non précisé' }}
+                </p>
+            </div>
+
+            <div class="mb-4">
+                <h2 class="text-2xl font-semibold text-gray-800">Lieu</h2>
+                <p class="text-lg text-gray-600">
+                    <strong>Adresse du lieu:</strong> {{ voiture.garage and voiture.garage.lieu ? voiture.garage.lieu.adresse : 'Non précisé' }}
+                </p>
+                <p class="text-lg text-gray-600">
+                    <strong>Code postal:</strong> {{ voiture.garage and voiture.garage.lieu ? voiture.garage.lieu.codepostal : 'Non précisé' }}
+                </p>
+                <p class="text-lg text-gray-600">
+                    <strong>Ville:</strong> {{ voiture.garage and voiture.garage.lieu ? voiture.garage.lieu.ville : 'Non précisé' }}
+                </p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

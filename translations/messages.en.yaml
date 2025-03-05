@@ -1,0 +1,8 @@
+catalogue:
+  title: "Car Listing"
+  search: "Search"
+  city: "City"
+  keyword: "Keyword"
+  rental_price: "Rental Price (€)"
+  no_cars: "No cars available"
+  see: "See"

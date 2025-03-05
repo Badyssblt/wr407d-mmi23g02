@@ -1,0 +1,8 @@
+catalogue:
+  title: "Liste des Voitures"
+  search: "Rechercher"
+  city: "Ville"
+  keyword: "Mot-clé"
+  rental_price: "Prix location (€)"
+  no_cars: "Aucune voiture disponible"
+  see: "Voir"

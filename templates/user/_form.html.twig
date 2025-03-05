@@ -1,0 +1,39 @@
+{{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+
+<div class="mb-4">
+    {{ form_label(form.email, form.email.vars.label, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+    {{ form_widget(form.email, {'attr': {'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none'}}) }}
+    {{ form_errors(form.email, {'attr': {'class': 'text-sm text-red-500 mt-1'}}) }}
+</div>
+
+<div class="mb-4">
+    {{ form_label(form.roles, form.roles.vars.label, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+    {{ form_widget(form.roles, {'attr': {'class': 'flex gap-4 mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none'}}) }}
+    {{ form_errors(form.roles, {'attr': {'class': 'text-sm text-red-500 mt-1'}}) }}
+</div>
+
+<div class="mb-4">
+    {{ form_label(form.password, form.password.vars.label, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+    {{ form_widget(form.password, {'attr': {'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none'}}) }}
+    {{ form_errors(form.password, {'attr': {'class': 'text-sm text-red-500 mt-1'}}) }}
+</div>
+
+<div class="mb-4">
+    {{ form_label(form.nom, form.nom.vars.label, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+    {{ form_widget(form.nom, {'attr': {'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none'}}) }}
+    {{ form_errors(form.nom, {'attr': {'class': 'text-sm text-red-500 mt-1'}}) }}
+</div>
+
+<div class="mb-4">
+    {{ form_label(form.prenom, form.prenom.vars.label, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+    {{ form_widget(form.prenom, {'attr': {'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none'}}) }}
+    {{ form_errors(form.prenom, {'attr': {'class': 'text-sm text-red-500 mt-1'}}) }}
+</div>
+
+<div class="mt-4">
+    <button type="submit" class="w-full bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-200">
+        {{ button_label|default('Save') }}
+    </button>
+</div>
+
+{{ form_end(form) }}

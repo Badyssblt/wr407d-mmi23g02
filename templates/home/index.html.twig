@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'catalogue.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold mb-4">{{ 'catalogue.title'|trans }}</h1>
+
+        <div class="flex gap-6">
+            <a href="/fr/">🇫🇷 Français</a>
+            <a href="/en/">🇬🇧 English</a>
+        </div>
+
+
+        <form method="get" action="{{ path('app_voiture_catalogue') }}" class="my-6 flex space-x-4">
+            <select name="ville" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">{{ 'catalogue.city'|trans }}</option>
+                {% for v in villes %}
+                    <option value="{{ v }}" {% if app.request.query.get('ville') == v %}selected{% endif %}>{{ v }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="text" name="keyword" placeholder="{{ 'catalogue.keyword'|trans }}" value="{{ app.request.query.get('keyword') }}"
+                   class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+            <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
+                {{ 'catalogue.search'|trans }}
+            </button>
+        </form>
+
+        <table class="min-w-full bg-white border border-gray-300 shadow-md rounded-lg">
+            <thead>
+            <tr class="bg-gray-200 text-gray-700">
+                <th class="py-2 px-4 border-b">{{ 'catalogue.title'|trans }}</th>
+                <th class="py-2 px-4 border-b">Description</th>
+                <th class="py-2 px-4 border-b">Image</th>
+                <th class="py-2 px-4 border-b">{{ 'catalogue.rental_price'|trans }}</th>
+                <th class="py-2 px-4 border-b">{{ 'catalogue.city'|trans }}</th>
+                <th class="py-2 px-4 border-b">{{ 'catalogue.see'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for voiture in voitures %}
+                    <tr class="border-b hover:bg-gray-100">
+                        <td class="py-2 px-4 text-center">{{ voiture.titre }}</td>
+                        <td class="py-2 px-4 text-center">{{ voiture.description }}</td>
+                        <td class="py-2 px-4 flex justify-center">
+                            <img class="w-24 h-24 object-cover" src="{{ voiture.lienImage }}" alt="{{ voiture.titre }}">
+                        </td>
+                        <td class="py-2 px-4 text-center">{{ voiture.prixLocation }}</td>
+                        <td class="py-2 px-4 text-center">
+                            {{ voiture.garage ? voiture.garage.lieu.ville : 'Non précisé' }}
+                        </td>
+                        <td class="py-2 px-4 text-center"><a href="{{ path('app_voiture_show', { id: voiture.id }) }}">{{ 'catalogue.see'|trans }}</a></td>
+                    </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center py-4 text-gray-500">{{ 'catalogue.no_cars'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
